@@ -48,6 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\MainMenuAnimControl.cs" />
      <Compile Include="Assets\Scripts\PresentAnimControl.cs" />
+     <Compile Include="Assets\Scripts\PresentationController.cs" />
+     <None Include="Assets\Text\VeryEasy.txt" />
+     <None Include="Assets\Text\Hard.txt" />
+     <None Include="Assets\Text\Medium.txt" />
+     <None Include="Assets\Text\Easy.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.6/UnityEngine.UI.dll</HintPath>
  </Reference>
