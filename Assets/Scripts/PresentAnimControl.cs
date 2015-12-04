@@ -21,24 +21,67 @@ public class PresentAnimControl : MonoBehaviour {
 
 	private int m_InParameterId;
 	private bool taskFinished = false;
-
+	private RectTransform trt;
+	private Image tbi;
 
 	void Start() {
 		timer = timerStartVal;
 		presentNew();
 	}
 
-
+	void Update() {
+		if (!taskFinished) {
+			if (timer < 0) {
+				timer = timerStartVal;
+				grabAnswer ();
+				controller.recordToArray (timerStartVal);
+				presentNew ();
+			} else {
+				timer -= Time.deltaTime;
+			}
+		} else {
+			loadFin ();
+		}
+		// Scale stuff
+		trt = TimerBarPanel.GetComponent<RectTransform> ();
+		Vector3 scale = trt.localScale;
+		scale.x = timer / timerStartVal;
+		trt.localScale = scale;
+		// Color stuff
+		/*
+		tbi = TimerBarPanel.GetComponent<Image> ();
+		Color nc = tbi.color;
+		if (nc.r < 255) {
+			nc.r = (1 - (timer / timerStartVal)) * 510;
+		} else {
+			nc.g = 255 - (1 - (timer / timerStartVal) * 510);
+		}
+		Debug.Log ((timer / timerStartVal) + " r: " + nc.r + " g: " + nc.g + " b: " + nc.b);
+		tbi.color = nc;
+		*/
+	}
 
 	public void OnEnable() {
 		// Required to feed Animator.SetBool
 		m_InParameterId = Animator.StringToHash(k_TransitionName);
 	}
 
+	public void submissionWrapper() {
+		if (Input.GetButtonDown ("Submit")) {
+			submit ();
+			answerField.text = "";
+			answerField.Select();
+			answerField.ActivateInputField();
+		}
+	}
+
 	public void submit() {
-		grabAnswer();
-		controller.recordToArray(0.0f);
-		presentNew();
+		if (!taskFinished) {
+			grabAnswer ();
+			controller.recordToArray (timerStartVal - timer);
+			presentNew ();
+			timer = timerStartVal;
+		}
 	}
 
 	public void presentNew() {
@@ -82,7 +125,10 @@ public class PresentAnimControl : MonoBehaviour {
 			//End task.
 			w1.text = w2.text = w3.text = "DONE"; // TODO: CHANGE
 			taskFinished = true;
-			controller.logRecordedEntries();
+			answerField.interactable = false;
+
+			controller.logRecordedEntries();  //DEBUG LINE
+
 
 		} else {
 			string[] sep = incLine.Split(delims);
@@ -90,6 +136,12 @@ public class PresentAnimControl : MonoBehaviour {
 			w1.text = sep[0];
 			w2.text = sep[1];
 			w3.text = sep[2];
+		}
+	}
+
+	public void loadFin() {
+		if (Application.CanStreamedLevelBeLoaded("LeFin")){
+			Application.LoadLevel ("LeFin");
 		}
 	}
 }
