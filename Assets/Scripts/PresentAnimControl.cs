@@ -12,6 +12,8 @@ public class PresentAnimControl : MonoBehaviour {
 	public Animator centerPresent;
 	public Animator rightPresent;
 
+	public AudioSource clickSource;
+
 	public GameObject TimerBarPanel;
 	public InputField answerField;
 
@@ -77,6 +79,7 @@ public class PresentAnimControl : MonoBehaviour {
 
 	public void submit() {
 		if (!taskFinished) {
+			clickSource.Play();
 			grabAnswer ();
 			controller.recordToArray (timerStartVal - timer);
 			presentNew ();

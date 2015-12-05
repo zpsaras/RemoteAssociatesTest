@@ -1,0 +1,15 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="MainMenuAnimControl">
+			<method name="OpenPanel"/>
+			<method name="OpenPanel"/>
+		</type>
+		<type fullname="MainMenuController">
+			<method name="startTask"/>
+		</type>
+		<type fullname="PresentAnimControl">
+			<method name="submit"/>
+			<method name="submissionWrapper"/>
+		</type>
+	</assembly>
+</linker>
