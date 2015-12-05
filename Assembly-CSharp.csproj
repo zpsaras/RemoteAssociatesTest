@@ -52,9 +52,13 @@
      <Compile Include="Assets\Scripts\PresentationController.cs" />
      <None Include="Assets\Text\VeryEasy.txt" />
      <None Include="Assets\Text\Hard.txt" />
+     <None Include="Assets\Text\HardWin.txt" />
+     <None Include="Assets\Text\MediumWin.txt" />
      <None Include="Assets\Fonts\source-sans-pro\SIL Open Font License.txt" />
      <None Include="Assets\Text\Medium.txt" />
+     <None Include="Assets\Text\VeryEasyWin.txt" />
      <None Include="Assets\Text\Easy.txt" />
+     <None Include="Assets\Text\EasyWin.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.6/UnityEngine.UI.dll</HintPath>
  </Reference>
